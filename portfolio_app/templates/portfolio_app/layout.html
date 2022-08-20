@@ -18,15 +18,19 @@
 		<div id="navbar">
 			<h2>Welcome {{ user.username }}</h2>
 			<nav id="nav-buttons">
-				<button type="button" class="btn btn-outline-primary btn-sm">
+				<a type="button" href="{% url "index" %}" class="btn btn-outline-primary btn-sm">
 					Profile
-				</button>
-				<button type="button" class="btn btn-outline-primary btn-sm">
+				</a>
+				<a
+					type="button"
+					href="{% url "edit_profile" %}"
+					class="btn btn-outline-primary btn-sm"
+				>
 					Edit Profile
-				</button>
-				<button type="button" class="btn btn-outline-primary btn-sm">
+				</a>
+				<a type="button" class="btn btn-outline-primary btn-sm">
 					Map
-				</button>
+				</a>
 			</nav>
 		</div>
 

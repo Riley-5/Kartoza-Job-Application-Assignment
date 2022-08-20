@@ -17,7 +17,7 @@
 	gap: 1vw;
 }
 
-/* Stylin for the index page */
+/* Styling for the index page */
 #profile-container {
 	height: 94vh;
 	width: 100vw;
@@ -29,4 +29,24 @@
 #profile-info {
 	border: solid 1px black;
 	padding: 1vh 1vw;
+}
+
+/* Styling for the edit profile page */
+#edit-profile-container {
+	height: 94vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#edit-profile-form-container {
+	border: solid 1px black;
+	padding: 1vh 1vw;
+}
+
+#edit-profile-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1vh;
 }
