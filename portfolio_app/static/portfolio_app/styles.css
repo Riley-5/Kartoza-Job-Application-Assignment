@@ -50,3 +50,9 @@
 	flex-direction: column;
 	gap: 1vh;
 }
+
+/* Styling for map */
+#map {
+	height: 94vh;
+	width: 100vw;
+}

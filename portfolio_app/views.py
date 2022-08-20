@@ -1,6 +1,6 @@
-from audioop import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.shortcuts import render
 from django.template import loader
 from portfolio_app.models import *
 
@@ -19,6 +19,7 @@ def index(request):
 """
 def edit_profile(request):
     pk = request.user.id
+
     if request.method == "POST":
         username = request.POST["username"]
         home_address = request.POST["home_address"]
@@ -37,3 +38,6 @@ def edit_profile(request):
         "user_info": request.user
     }
     return HttpResponse(template.render(context, request))
+
+def map(request):
+    return render(request, "portfolio_app/map.html")
