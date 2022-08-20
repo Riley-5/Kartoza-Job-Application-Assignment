@@ -1,0 +1,7 @@
+{% extends "portfolio_app/layout.html" %} {% load static %} {% block body %}
+<div id="profile">
+	<h1>{{ user.username }}</h1>
+	<p>{{ user.home_address }}</p>
+	<p>{{ user.phone_number }}</p>
+</div>
+{% endblock %}
