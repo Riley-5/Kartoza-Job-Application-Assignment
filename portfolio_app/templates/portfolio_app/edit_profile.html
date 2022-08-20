@@ -1,0 +1,15 @@
+{% extends "portfolio_app/layout.html" %} {% load static %} {% block body %}
+<div id="edit-profile-container">
+    <div id="edit-profile-form-container">
+        <h1>Edit Profile</h1>
+        <hr>
+        <form id="edit-profile-form" action="{% url "edit_profile" %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" value="{{ user.username }}">
+            <input type="text" name="home_address" value="{{ user.home_address }}">
+            <input type="text" name="phone_number" value="{{ user.phone_number }}">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+{% endblock %}
