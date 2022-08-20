@@ -1,3 +1,4 @@
+/* Styling for the Navbar */
 #navbar {
 	display: flex;
 	justify-content: space-between;
@@ -14,4 +15,18 @@
 	justify-content: center;
 	align-items: center;
 	gap: 1vw;
+}
+
+/* Stylin for the index page */
+#profile-container {
+	height: 94vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#profile-info {
+	border: solid 1px black;
+	padding: 1vh 1vw;
 }
