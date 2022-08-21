@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.signals import user_logged_in, user_logged_out
+from django.dispatch import receiver
 
 # Create your models here.
 """
@@ -28,3 +30,11 @@ class User(AbstractUser):
             "location_latitude": self.location_latitude,
             "location_longitude": self.location_longitude
         }
+
+@receiver(user_logged_in, sender=User)
+def log_login(sender, request, user, **kwargs):
+    print(f"{user.username} logged in")
+
+@receiver(user_logged_out, sender=User)
+def log_login(sender, request, user, **kwargs):
+    print(f"{user.username} logged out")
