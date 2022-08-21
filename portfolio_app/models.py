@@ -26,5 +26,5 @@ class User(AbstractUser):
             "home_address": self.home_address,
             "phone_number": self.phone_number,
             "location_latitude": self.location_latitude,
-            "location_longitude": self.location_longtitude
+            "location_longitude": self.location_longitude
         }
