@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.dispatch import receiver
+from datetime import datetime
 
 # Create your models here.
 """
@@ -31,10 +32,18 @@ class User(AbstractUser):
             "location_longitude": self.location_longitude
         }
 
+"""
+    When a user logs in 
+    Log the username and when the user logged in
+"""
 @receiver(user_logged_in, sender=User)
 def log_login(sender, request, user, **kwargs):
-    print(f"{user.username} logged in")
+    print(f"{user.username} logged in at {datetime.now().strftime('%c')}")
 
+"""
+    When a user logs out 
+    Log the username and when the user logged out
+"""
 @receiver(user_logged_out, sender=User)
 def log_login(sender, request, user, **kwargs):
-    print(f"{user.username} logged out")
+    print(f"{user.username} logged out at {datetime.now().strftime('%c')}")
