@@ -22,7 +22,7 @@ class User(AbstractUser):
     def serialize(self):
         return {
             "id": self.id,
-            "username": self.username,
+            # "username": self.username,
             "home_address": self.home_address,
             "phone_number": self.phone_number,
             "location_latitude": self.location_latitude,
