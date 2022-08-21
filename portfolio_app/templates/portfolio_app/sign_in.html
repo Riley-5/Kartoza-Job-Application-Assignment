@@ -1,8 +1,8 @@
 {% extends "portfolio_app/layout.html" %} {% load static %} {% block body %}
-<div id="sign-in-container">
-	<div id="sign-in-info">
-        <h1>Sign In</h1>
-		<form id="sign-in-form" action="{% url "sign_in" %}" method="POST">
+<div class="container">
+	<div class="info">
+        <h1 class="center-heading">Sign In</h1>
+		<form class="form" action="{% url "sign_in" %}" method="POST">
             {% csrf_token %}
             <input type="text" name="username" placeholder="Username">
             <input type="password" name="password" placeholder="Password">
