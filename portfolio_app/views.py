@@ -9,7 +9,7 @@ from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 """
-    Defualt view 
+    Defualt view because why not
     Displayes the usrs profile page
 """
 def index(request):
@@ -49,6 +49,12 @@ def edit_profile(request):
     }
     return HttpResponse(template.render(context, request))
 
+"""
+    Get the username and password from the sign in form
+    Authenticate the user
+    If authentication returns a user object log the user in and go to profile page
+    Else send message informing user that the login failed
+"""
 def sign_in(request):
     if request.method == "POST":
         username = request.POST["username"]
