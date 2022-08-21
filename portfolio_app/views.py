@@ -4,7 +4,8 @@ from django.shortcuts import render
 from django.template import loader
 from portfolio_app.models import *
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 """
@@ -48,6 +49,24 @@ def edit_profile(request):
     }
     return HttpResponse(template.render(context, request))
 
+def sign_in(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+       
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(reverse("index"))
+        else:
+            return render(request, "portfolio_app/sign_in.html", {
+                "message": "Sign in failed"
+            })
+
+    return render(request, "portfolio_app/sign_in.html")
+
+
 """
     Collects all the sign in information from the sign up form 
     Creates a new user and saves user to db
@@ -62,6 +81,8 @@ def sign_up(request):
         location_latitude = request.POST["location_latitude"]
         location_longitude = request.POST["location_longitude"]
 
+        password = make_password(password)
+
         user = User(username=username, password=password, home_address=home_address, phone_number=phone_number, location_latitude=location_latitude, location_longitude=location_longitude)
         user.save()
 
@@ -70,8 +91,6 @@ def sign_up(request):
     
     return render(request, "portfolio_app/sign_up.html" )
 
-
-        
 
 """
     Renders the map with all the users as markers
