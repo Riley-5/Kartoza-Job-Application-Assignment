@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 	const map = L.map("map").setView([-29, 22.9375], 6)
-	const marker = L.marker()
+	let marker = null
 
 	// Adds OSM as a base layer
 	L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -15,9 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
 	fetch("get_users")
 		.then((response) => response.json())
 		.then((users) => {
+			console.log(users)
 			users.map((user) => {
-				marker.setLatLng([user.location_latitude, user.location_longitude])
-				marker.addTo(map)
+				marker = L.marker()
+				marker
+					.setLatLng([user.location_latitude, user.location_longitude])
+					.addTo(map)
 
 				/*
 					Popup content
