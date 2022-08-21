@@ -9,7 +9,7 @@ from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 """
-    Defualt view 
+    Defualt view because why not
     Displayes the usrs profile page
 """
 def index(request):
