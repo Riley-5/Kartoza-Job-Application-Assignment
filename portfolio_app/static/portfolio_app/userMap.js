@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	}).addTo(map)
 
 	/*
-		Fetch all users and place in users array
+		Fetch all users
+		Adds the user locations to the map as a marker
 	*/
 	fetch("get_users")
 		.then((response) => response.json())
@@ -17,6 +18,23 @@ document.addEventListener("DOMContentLoaded", () => {
 			users.map((user) => {
 				marker.setLatLng([user.location_latitude, user.location_longitude])
 				marker.addTo(map)
+
+				/*
+					Popup content
+					Username
+					Home address
+					Phone number
+				*/
+				const popupContent = `
+					<div>
+						<h1>${user.username}</h1>
+						<p>Home Address: ${user.home_address}</p>
+						<p>Phone Number: ${user.phone_number}</p>
+					</div>
+				`
+
+				// Bind popup to marker and open on marker click
+				marker.bindPopup(popupContent)
 			})
 		})
 })
