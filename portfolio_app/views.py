@@ -13,12 +13,8 @@ def index(request):
         Defualt view
         Displayes the usrs profile page
     """
-
-    template = loader.get_template("portfolio_app/index.html")
-    context = {
-        "user": request.user
-    }
-    return HttpResponse(template.render(context, request))
+    return render(request, "portfolio_app/map.html")
+    
 
 def edit_profile(request):
     """
@@ -42,8 +38,8 @@ def edit_profile(request):
         user.phone_number = phone_number
         user.save()
 
-        # Route back to profile/index page
-        return HttpResponseRedirect(reverse("index"))
+        # Route back to profile page
+        return HttpResponseRedirect(reverse("profile"))
 
     template = loader.get_template("portfolio_app/edit_profile.html")
     context = {
@@ -67,7 +63,7 @@ def sign_in(request):
 
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("profile"))
         else:
             return render(request, "portfolio_app/sign_in.html", {
                 "message": "Sign in failed"
@@ -81,7 +77,7 @@ def sign_out(request):
         Show map page
     """
     logout(request)
-    return HttpResponseRedirect(reverse("map"))
+    return HttpResponseRedirect(reverse("index"))
 
 def sign_up(request):
     """
@@ -104,16 +100,18 @@ def sign_up(request):
         user.save()
 
         login(request, user)
-        return HttpResponseRedirect(reverse("index"))
+        return HttpResponseRedirect(reverse("profile"))
     
     return render(request, "portfolio_app/sign_up.html" )
 
-def map(request):
+def profile(request):
     """
         Renders the map with all the users as markers
     """
 
-    return render(request, "portfolio_app/map.html")
+    return render(request, "portfolio_app/profile.html", {
+        "user": request.user
+    })
 
 @csrf_exempt
 def get_users(request):
