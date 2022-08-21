@@ -68,10 +68,7 @@ def sign_up(request):
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     
-    return render(request, "portfolio_app/sign_up.html" )
-
-
-        
+    return render(request, "portfolio_app/sign_up.html")
 
 """
     Renders the map with all the users as markers
