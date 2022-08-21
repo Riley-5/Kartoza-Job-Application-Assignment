@@ -18,6 +18,9 @@
 		<div id="navbar">
 			<h2>Welcome {{ user.username }}</h2>
 			<nav id="nav-buttons">
+				<a type="button" href="{% url "sign_up" %}" class="btn btn-outline-primary btn-sm">
+					Sign Up
+				</a>
 				<a type="button" href="{% url "index" %}" class="btn btn-outline-primary btn-sm">
 					Profile
 				</a>

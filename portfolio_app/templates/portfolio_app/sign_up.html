@@ -1,0 +1,17 @@
+{% extends "portfolio_app/layout.html" %} {% load static %} {% block body %}
+<div id="sign-up-container">
+	<div id="sign-up-info">
+        <h1>Sign Up</h1>
+		<form id="sign-up-form" action="{% url "sign_up" %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <input type="text" name="home_address" placeholder="Home Address">
+            <input type="number" name="phone_number" placeholder="Phone Number">
+            <input type="text" name="location_latitude" placeholder="Latitude">
+            <input type="text" name="location_longitude" placeholder="Longitude">
+            <input type="submit" value="Submit">
+        </form>
+	</div>
+</div>
+{% endblock %}
