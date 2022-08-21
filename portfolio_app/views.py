@@ -8,23 +8,25 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.hashers import make_password
 
 # Create your views here.
-"""
-    Defualt view because why not
-    Displayes the usrs profile page
-"""
 def index(request):
+    """
+        Defualt view
+        Displayes the usrs profile page
+    """
+
     template = loader.get_template("portfolio_app/index.html")
     context = {
         "user": request.user
     }
     return HttpResponse(template.render(context, request))
 
-"""
-    Gets the updated profile values from the edit profile form 
-    Updates that users profile information
-    Returns to the index page
-"""
 def edit_profile(request):
+    """
+        Gets the updated profile values from the edit profile form 
+        Updates that users profile information
+        Returns to the index page
+    """
+
     pk = request.user.id
 
     if request.method == "POST":
@@ -49,13 +51,14 @@ def edit_profile(request):
     }
     return HttpResponse(template.render(context, request))
 
-"""
-    Get the username and password from the sign in form
-    Authenticate the user
-    If authentication returns a user object log the user in and go to profile page
-    Else send message informing user that the login failed
-"""
 def sign_in(request):
+    """
+        Get the username and password from the sign in form
+        Authenticate the user
+        If authentication returns a user object log the user in and go to profile page
+        Else send message informing user that the login failed
+    """
+
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -72,13 +75,13 @@ def sign_in(request):
 
     return render(request, "portfolio_app/sign_in.html")
 
-
-"""
-    Collects all the sign in information from the sign up form 
-    Creates a new user and saves user to db
-    Navigates back to the index page
-"""
 def sign_up(request):
+    """
+        Collects all the sign in information from the sign up form 
+        Creates a new user and saves user to db
+        Navigates back to the index page
+    """
+
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -97,18 +100,19 @@ def sign_up(request):
     
     return render(request, "portfolio_app/sign_up.html" )
 
-
-"""
-    Renders the map with all the users as markers
-"""
 def map(request):
+    """
+        Renders the map with all the users as markers
+    """
+
     return render(request, "portfolio_app/map.html")
 
-"""
-    API route
-    Sends all the users to the frontend
-"""
 @csrf_exempt
 def get_users(request):
+    """
+        API route
+        Sends all the users to the frontend
+    """
+
     users = User.objects.all()
     return JsonResponse([user.serialize() for user in users], safe=False)
