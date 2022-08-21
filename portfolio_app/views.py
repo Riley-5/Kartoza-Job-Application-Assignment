@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.template import loader
 from portfolio_app.models import *
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.hashers import make_password
 
 # Create your views here.
@@ -74,6 +74,14 @@ def sign_in(request):
             })
 
     return render(request, "portfolio_app/sign_in.html")
+
+def sign_out(request):
+    """
+        Logout the user
+        Show map page
+    """
+    logout(request)
+    return HttpResponseRedirect(reverse("map"))
 
 def sign_up(request):
     """
