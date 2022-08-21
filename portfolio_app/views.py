@@ -6,6 +6,10 @@ from portfolio_app.models import *
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
+"""
+    Defualt view 
+    Displayes the usrs profile page
+"""
 def index(request):
     template = loader.get_template("portfolio_app/index.html")
     context = {
@@ -34,6 +38,7 @@ def edit_profile(request):
         user.phone_number = phone_number
         user.save()
 
+        # Route back to profile/index page
         return HttpResponseRedirect(reverse("index"))
 
     template = loader.get_template("portfolio_app/edit_profile.html")
@@ -42,9 +47,16 @@ def edit_profile(request):
     }
     return HttpResponse(template.render(context, request))
 
+"""
+    Renders the map with all the users as markers
+"""
 def map(request):
     return render(request, "portfolio_app/map.html")
 
+"""
+    API route
+    Sends all the users to the frontend
+"""
 @csrf_exempt
 def get_users(request):
     users = User.objects.all()

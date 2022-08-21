@@ -11,11 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
 	/*
 		Fetch all users
 		Adds the user locations to the map as a marker
+		Have a popup for each marker displaying users profile content
 	*/
 	fetch("get_users")
 		.then((response) => response.json())
 		.then((users) => {
-			console.log(users)
 			users.map((user) => {
 				marker = L.marker()
 				marker

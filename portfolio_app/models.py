@@ -2,11 +2,19 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+"""
+    Extends user class to include additional information
+        Home address
+        Phone Number
+        Location
+    Sets is_staff to true so that the user can log in from Django Admin
+"""
 class User(AbstractUser):
+    is_staff = models.BooleanField(default=True)
     home_address = models.CharField(max_length=500, null=True)
     phone_number = models.PositiveBigIntegerField(null=True)
     location_latitude = models.DecimalField(max_digits=30, decimal_places=28, null=True)
-    location_longtitude = models.DecimalField(max_digits=30, decimal_places=28, null=True)
+    location_longitude = models.DecimalField(max_digits=30, decimal_places=28, null=True)
 
     def __str__(self):
         return f"{self.id} | {self.username}"
