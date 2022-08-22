@@ -4,7 +4,7 @@
 **Docker**\
 If you have Docker and Docker Compose installed run the following in your terminal
 ```
-docker compuse up
+docker compose up
 ```
 Go to localhost:8000 in your browser to open the app
 
@@ -37,7 +37,7 @@ python3 manage.py test
 - [x] CI integration so that when new code is added via a pull request (PR), the code will be automatically tested and and indicator as to whether the tests have passed or not will be displayed 
 - [x] Sign up and sign in page
 - [ ] Log the user login/logout activity by showing who and when on the admin page
-  - Logging the user login and logout activities prints the users username and when they logged in or out to the console instead of logging the output to the Django admin page
+  - Logging the user login and logout activities prints the users username and when they logged in or out to the console instead of logging the output to the Django admin page. Please note that the print statements will only show when running the app with Python and **will not** show when running the app with Docker
 - [x] Push work to GitHub
 
 ---
