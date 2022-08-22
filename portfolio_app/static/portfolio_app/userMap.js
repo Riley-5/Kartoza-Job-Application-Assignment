@@ -17,18 +17,22 @@ document.addEventListener("DOMContentLoaded", () => {
 		.then((response) => response.json())
 		.then((users) => {
 			users.map((user) => {
-				marker = L.marker()
-				marker
-					.setLatLng([user.location_latitude, user.location_longitude])
-					.addTo(map)
+				if (user.location_latitude != null && user.location_longitude != null) {
+					marker = L.marker()
+					marker
+						.setLatLng([
+							parseFloat(user.location_latitude),
+							parseFloat(user.location_longitude)
+						])
+						.addTo(map)
 
-				/*
-					Popup content
-					Username
-					Home address
-					Phone number
-				*/
-				const popupContent = `
+					/*
+						Popup content
+						Username
+						Home address
+						Phone number
+					*/
+					const popupContent = `
 					<div>
 						<h1>${user.username}</h1>
 						<p>Home Address: ${user.home_address}</p>
@@ -36,8 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
 					</div>
 				`
 
-				// Bind popup to marker and open on marker click
-				marker.bindPopup(popupContent)
+					// Bind popup to marker and open on marker click
+					marker.bindPopup(popupContent)
+				}
 			})
 		})
 })
